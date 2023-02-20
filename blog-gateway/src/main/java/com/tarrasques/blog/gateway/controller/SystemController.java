@@ -11,7 +11,7 @@ public class SystemController {
     @RequestMapping("")
     @OperationLog(operation = "测试自定义注解")
     public String test() {
-        return "test";
+        return "test,world";
     }
 
 }
