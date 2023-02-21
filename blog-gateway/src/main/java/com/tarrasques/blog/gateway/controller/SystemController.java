@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SystemController {
 
     @RequestMapping("")
-    @OperationLog(operation = "测试自定义注解")
+    @OperationLog(operation = "测试")
     public String test() {
         return "test,world";
     }
