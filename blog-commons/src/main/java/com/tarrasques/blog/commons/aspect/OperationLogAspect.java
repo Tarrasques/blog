@@ -18,9 +18,9 @@ public class OperationLogAspect {
     }
 
     @Around("doAscept()")
-    public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
+    public void around(ProceedingJoinPoint joinPoint) {
         log.info("进入切面");
-        return joinPoint.proceed();
+//        return null;
     }
 
     @After("doAscept()")
