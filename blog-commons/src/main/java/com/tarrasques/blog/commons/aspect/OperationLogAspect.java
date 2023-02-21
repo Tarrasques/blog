@@ -14,25 +14,33 @@ public class OperationLogAspect {
     private Logger log = LoggerFactory.getLogger(OperationLogAspect.class);
 
     @Pointcut("@annotation(com.tarrasques.blog.commons.aspect.OperationLog)")
-    public void doAscept() {
+    public void doAspect() {
     }
 
-    @Around("doAscept()")
+    @Around("doAspect()")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
         log.info("进入切面");
+        String packagePath = joinPoint.getTarget().getClass().getName();
+        log.info(packagePath);
         return joinPoint.proceed();
     }
 
-    @After("doAscept()")
+    @After("doAspect()")
     public void after(JoinPoint joinPoint) {
         log.info("方法执行之后");
 //        return null;
     }
 
-    @Before("doAscept()")
+    @Before("doAspect()")
     public void before(JoinPoint joinPoint) {
         log.info("方法执行之前");
 //        return null;
+    }
+
+    @AfterThrowing("doAspect()")
+    public void afterThrowing(JoinPoint joinPoint) {
+        String packagePath = joinPoint.getTarget().getClass().getName();
+        log.info(packagePath);
     }
 
 }
