@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScans;
 
 @SpringBootApplication
-@ComponentScans(@ComponentScan(basePackages = {"com.tarrasques"}))
+@ComponentScans(@ComponentScan(basePackages = {"com.tarrasques.blog"}))
 public class BlogGatewayApplication {
 
     public static void main(String[] args) {
