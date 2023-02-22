@@ -19,6 +19,7 @@ public class InterceptorConfig implements HandlerInterceptor, Ordered {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         String ip = ServletUtil.getClientIP(request, null);
         log.info("登录地址IP是============> {}", ip);
+
         return true;
     }
 
