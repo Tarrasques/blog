@@ -1,5 +1,6 @@
 package com.tarrasques.blog.gateway;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
@@ -7,6 +8,7 @@ import org.springframework.context.annotation.ComponentScans;
 
 @SpringBootApplication
 @ComponentScans(@ComponentScan(basePackages = {"com.tarrasques.blog"}))
+@MapperScan("com.tarrasques.blog")
 public class BlogGatewayApplication {
 
     public static void main(String[] args) {
