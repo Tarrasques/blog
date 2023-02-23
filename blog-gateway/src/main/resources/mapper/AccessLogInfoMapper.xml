@@ -4,9 +4,9 @@
 
   <resultMap id="BaseResultMap" type="com.tarrasques.blog.commons.entity.AccessLogInfo">
     <id column="id" jdbcType="VARCHAR" property="id"/>
-    <result column="access_name" jdbcType="VARCHAR" property="userName"/>
+    <result column="access_name" jdbcType="VARCHAR" property="accessName"/>
     <result column="access_ip" jdbcType="VARCHAR" property="accessIp"/>
-    <result column="access_time" jdbcType="TIMESTAMP" property="accessTime"/>
+    <result column="access_time" jdbcType="TIMESTAMP" javaType="String" property="accessTime"/>
   </resultMap>
 
   <sql id="Where_Clause">
@@ -14,16 +14,19 @@
       <if test="id != null and id != ''">
         and id = #{id,jdbcType=VARCHAR},
       </if>
-      <if test="userName != null and userName != ''">
-        and user_name = #{userName,jdbcType=VARCHAR},
+      <if test="accessName != null and accessName != ''">
+        and access_name = #{accessName,jdbcType=VARCHAR},
       </if>
       <if test="accessIp != null and accessIp != ''">
         and access_ip = #{accessIp,jdbcType=VARCHAR},
       </if>
-      <if test="accessTime != null and accessTime != ''">
-        and access_ip = #{accessIp,jdbcType=VARCHAR},
+      <if test="accessPath != null and accessPath != ''">
+        and access_path = #{accessPath,jdbcType=VARCHAR},
       </if>
-      <if test="accessTimeStart != null and accessTimeStart != '' and accessTimeEnd != null and accessTimeEnd != ''">
+      <if test="accessTime != null">
+        and access_time = #{accessTime,jdbcType=VARCHAR},
+      </if>
+      <if test="accessTimeStart != null and accessTimeEnd != null">
         and access_time between access_time = #{accessTimeStart,jdbcType=TIMESTAMP} and access_time =
         #{accessTimeEnd,jdbcType=TIMESTAMP}
       </if>
@@ -36,5 +39,12 @@
       <include refid="Where_Clause"/>
     </if>
   </select>
+
+  <insert id="insertAccessLog" parameterType="com.tarrasques.blog.commons.entity.AccessLogInfo">
+    insert into access_log_info(id, access_name, access_path, access_ip, access_time)
+    values (#{id,jdbcType=VARCHAR}, #{accessName,jdbcType=VARCHAR}, #{accessPath,jdbcType=VARCHAR},
+            #{accessIp,jdbcType=VARCHAR},
+            #{accessTime,jdbcType=VARCHAR})
+  </insert>
 
 </mapper>

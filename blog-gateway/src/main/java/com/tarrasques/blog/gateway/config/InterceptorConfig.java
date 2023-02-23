@@ -26,12 +26,15 @@ public class InterceptorConfig implements HandlerInterceptor, Ordered {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         String ip = ServletUtil.getClientIP(request, null   );
+        String path = request.getServletPath();
         log.info("登录地址IP是============> {}", ip);
         AccessLogInfo accessLogInfo = new AccessLogInfo();
         accessLogInfo.setId(UUID.randomUUID().toString());
         accessLogInfo.setAccessIp(ip);
+        accessLogInfo.setAccessName("访客");
+        accessLogInfo.setAccessPath(path);
         accessLogInfo.setAccessTime(new Date());
-        service.select(accessLogInfo);
+        service.insertAccessLog(accessLogInfo);
         return true;
     }
 

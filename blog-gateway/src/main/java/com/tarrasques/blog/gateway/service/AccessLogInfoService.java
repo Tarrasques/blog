@@ -7,5 +7,6 @@ import java.util.List;
 public interface AccessLogInfoService {
 
     List select(AccessLogInfo info);
+    void insertAccessLog(AccessLogInfo info);
 
 }

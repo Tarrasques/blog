@@ -19,4 +19,9 @@ public class AccessLogInfoServiceImpl implements AccessLogInfoService {
         return mapper.select(info);
     }
 
+    @Override
+    public void insertAccessLog(AccessLogInfo info) {
+        mapper.insertAccessLog(info);
+    }
+
 }
