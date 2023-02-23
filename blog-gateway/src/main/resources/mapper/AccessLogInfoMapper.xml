@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tarrasques.blog.interfaces.mapper.AccessLogInfoMapper">
+<mapper namespace="com.tarrasques.blog.gateway.mapper.AccessLogInfoMapper">
 
   <resultMap id="BaseResultMap" type="com.tarrasques.blog.commons.entity.AccessLogInfo">
     <id column="id" jdbcType="VARCHAR" property="id"/>
@@ -11,26 +11,27 @@
 
   <sql id="Where_Clause">
     <where>
-    <if test="id != null and id != ''">
-      and id = #{id,jdbcType=VARCHAR},
-    </if>
-    <if test="userName != null and userName != ''">
-      and user_name = #{userName,jdbcType=VARCHAR},
-    </if>
-    <if test="accessIp != null and accessIp != ''">
-      and access_ip = #{accessIp,jdbcType=VARCHAR},
-    </if>
-    <if test="accessTime != null and accessTime != ''">
-      and access_ip = #{accessIp,jdbcType=VARCHAR},
-    </if>
-    <if test="accessTimeStart != null and accessTimeStart != '' and accessTimeEnd != null and accessTimeEnd != ''">
-      and access_time between access_time = #{accessTimeStart,jdbcType=TIMESTAMP} and access_time =
-      #{accessTimeEnd,jdbcType=TIMESTAMP}
-    </if>
+      <if test="id != null and id != ''">
+        and id = #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null and userName != ''">
+        and user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="accessIp != null and accessIp != ''">
+        and access_ip = #{accessIp,jdbcType=VARCHAR},
+      </if>
+      <if test="accessTime != null and accessTime != ''">
+        and access_ip = #{accessIp,jdbcType=VARCHAR},
+      </if>
+      <if test="accessTimeStart != null and accessTimeStart != '' and accessTimeEnd != null and accessTimeEnd != ''">
+        and access_time between access_time = #{accessTimeStart,jdbcType=TIMESTAMP} and access_time =
+        #{accessTimeEnd,jdbcType=TIMESTAMP}
+      </if>
+    </where>
   </sql>
 
   <select id="select" parameterType="com.tarrasques.blog.commons.entity.AccessLogInfo" resultType="java.util.List">
-    select id,userName,accessIp from access_log_info
+    select * from access_log_info
     <if test="_parameter != null">
       <include refid="Where_Clause"/>
     </if>

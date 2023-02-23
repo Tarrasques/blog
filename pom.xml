@@ -31,12 +31,11 @@
         <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
         <lombok.version>1.18.20</lombok.version>
         <blog-commons.version>0.0.1-SNAPSHOT</blog-commons.version>
-        <blog-interfaces.version>0.0.1-SNAPSHOT</blog-interfaces.version>
         <jackson.version>2.12.3</jackson.version>
+        <blog-gateway.version>0.0.1-SNAPSHOT</blog-gateway.version>
     </properties>
         <modules>
             <module>blog-commons</module>
-            <module>blog-interfaces</module>
             <module>blog-gateway</module>
         </modules>
 
@@ -132,8 +131,8 @@
             </dependency>
             <dependency>
                 <groupId>com.tarrasques</groupId>
-                <artifactId>blog-interfaces</artifactId>
-                <version>${blog-interfaces.version}</version>
+                <artifactId>blog-gateway</artifactId>
+                <version>${blog-gateway.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

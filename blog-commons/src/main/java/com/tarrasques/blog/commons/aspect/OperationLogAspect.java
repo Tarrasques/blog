@@ -28,13 +28,11 @@ public class OperationLogAspect {
     @After("doAspect()")
     public void after(JoinPoint joinPoint) {
         log.info("方法执行之后");
-//        return null;
     }
 
     @Before("doAspect()")
     public void before(JoinPoint joinPoint) {
         log.info("方法执行之前");
-//        return null;
     }
 
     @AfterThrowing("doAspect()")
