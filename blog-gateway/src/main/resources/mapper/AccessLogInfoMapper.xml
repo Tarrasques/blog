@@ -6,7 +6,8 @@
     <id column="id" jdbcType="VARCHAR" property="id"/>
     <result column="access_name" jdbcType="VARCHAR" property="accessName"/>
     <result column="access_ip" jdbcType="VARCHAR" property="accessIp"/>
-    <result column="access_time" jdbcType="TIMESTAMP" javaType="String" property="accessTime"/>
+    <result column="access_path" jdbcType="VARCHAR" property="accessPath"/>
+    <result column="access_time" jdbcType="TIMESTAMP" property="accessTime"/>
   </resultMap>
 
   <sql id="Where_Clause">
@@ -33,7 +34,7 @@
     </where>
   </sql>
 
-  <select id="select" parameterType="com.tarrasques.blog.commons.entity.AccessLogInfo" resultType="java.util.List">
+  <select id="select" parameterType="com.tarrasques.blog.commons.entity.AccessLogInfo" resultMap="BaseResultMap">
     select * from access_log_info
     <if test="_parameter != null">
       <include refid="Where_Clause"/>

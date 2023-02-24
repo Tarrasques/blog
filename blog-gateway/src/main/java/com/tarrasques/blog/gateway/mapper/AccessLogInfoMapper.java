@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface AccessLogInfoMapper {
 
-    List select(AccessLogInfo info);
+    List<AccessLogInfo> select(AccessLogInfo info);
     int insertAccessLog(AccessLogInfo info);
 
 }
