@@ -30,6 +30,9 @@ public class InterceptorConfig implements HandlerInterceptor, Ordered {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         String ip = ServletUtil.getClientIP(request, null);
         String path = request.getServletPath();
+        //确认是否登录
+        String token = response.getHeader("token");
+        
         log.info("登录地址IP是============> {}", ip);
         AccessLogInfo accessLogInfo = new AccessLogInfo();
         accessLogInfo.setId(UUIDUtil.getUUID());

@@ -27,7 +27,7 @@ public class RoleInfoServiceImpl implements RoleInfoService {
      */
     @Override
     public RoleInfo queryById(String id) {
-        return this.roleInfoMapper.queryById(id);
+        return roleInfoMapper.queryById(id);
     }
 
     /**
@@ -37,9 +37,8 @@ public class RoleInfoServiceImpl implements RoleInfoService {
      * @return 实例对象
      */
     @Override
-    public RoleInfo insert(RoleInfo roleInfo) {
-        this.roleInfoMapper.insert(roleInfo);
-        return roleInfo;
+    public void insert(RoleInfo roleInfo) {
+        roleInfoMapper.insert(roleInfo);
     }
 
     /**
@@ -49,9 +48,8 @@ public class RoleInfoServiceImpl implements RoleInfoService {
      * @return 实例对象
      */
     @Override
-    public RoleInfo update(RoleInfo roleInfo) {
-        this.roleInfoMapper.update(roleInfo);
-        return this.queryById(roleInfo.getId());
+    public void update(RoleInfo roleInfo) {
+        roleInfoMapper.update(roleInfo);
     }
 
     /**
@@ -61,7 +59,7 @@ public class RoleInfoServiceImpl implements RoleInfoService {
      * @return 是否成功
      */
     @Override
-    public boolean deleteById(String id) {
-        return this.roleInfoMapper.deleteById(id) > 0;
+    public void deleteById(String id) {
+        roleInfoMapper.deleteById(id);
     }
 }

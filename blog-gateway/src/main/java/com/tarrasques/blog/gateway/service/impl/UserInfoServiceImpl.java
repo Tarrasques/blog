@@ -1,11 +1,13 @@
 package com.tarrasques.blog.gateway.service.impl;
 
 import com.tarrasques.blog.commons.entity.UserInfo;
+import com.tarrasques.blog.commons.utils.UUIDUtil;
 import com.tarrasques.blog.gateway.mapper.UserInfoMapper;
 import com.tarrasques.blog.gateway.service.UserInfoService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * (UserInfo)表服务实现类
@@ -36,9 +38,10 @@ public class UserInfoServiceImpl implements UserInfoService {
      * @return 实例对象
      */
     @Override
-    public UserInfo insert(UserInfo userInfo) {
+    public void insert(UserInfo userInfo) {
+        userInfo.setId(UUIDUtil.getUUID());
+        userInfo.setCreateTime(new Date());
         this.userInfoMapper.insert(userInfo);
-        return userInfo;
     }
 
     /**
@@ -48,9 +51,8 @@ public class UserInfoServiceImpl implements UserInfoService {
      * @return 实例对象
      */
     @Override
-    public UserInfo update(UserInfo userInfo) {
+    public void update(UserInfo userInfo) {
         this.userInfoMapper.update(userInfo);
-        return this.queryById(userInfo.getId());
     }
 
     /**
@@ -60,7 +62,7 @@ public class UserInfoServiceImpl implements UserInfoService {
      * @return 是否成功
      */
     @Override
-    public boolean deleteById(String id) {
-        return this.userInfoMapper.deleteById(id) > 0;
+    public void deleteById(String id) {
+        this.userInfoMapper.deleteById(id);
     }
 }

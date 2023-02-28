@@ -24,7 +24,7 @@ public interface UserInfoService {
      * @param userInfo 实例对象
      * @return 实例对象
      */
-    UserInfo insert(UserInfo userInfo);
+    void insert(UserInfo userInfo);
 
     /**
      * 修改数据
@@ -32,7 +32,7 @@ public interface UserInfoService {
      * @param userInfo 实例对象
      * @return 实例对象
      */
-    UserInfo update(UserInfo userInfo);
+    void update(UserInfo userInfo);
 
     /**
      * 通过主键删除数据
@@ -40,6 +40,6 @@ public interface UserInfoService {
      * @param id 主键
      * @return 是否成功
      */
-    boolean deleteById(String id);
+    void deleteById(String id);
 
 }

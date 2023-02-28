@@ -25,7 +25,7 @@ public interface RoleInfoService {
      * @param roleInfo 实例对象
      * @return 实例对象
      */
-    RoleInfo insert(RoleInfo roleInfo);
+    void insert(RoleInfo roleInfo);
 
     /**
      * 修改数据
@@ -33,7 +33,7 @@ public interface RoleInfoService {
      * @param roleInfo 实例对象
      * @return 实例对象
      */
-    RoleInfo update(RoleInfo roleInfo);
+    void update(RoleInfo roleInfo);
 
     /**
      * 通过主键删除数据
@@ -41,6 +41,6 @@ public interface RoleInfoService {
      * @param id 主键
      * @return 是否成功
      */
-    boolean deleteById(String id);
+    void deleteById(String id);
 
 }
