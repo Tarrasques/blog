@@ -14,7 +14,7 @@ public class CentralConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(interceptorConfig);
+        registry.addInterceptor(interceptorConfig).addPathPatterns("/**").excludePathPatterns("/static/**");
     }
 
 }

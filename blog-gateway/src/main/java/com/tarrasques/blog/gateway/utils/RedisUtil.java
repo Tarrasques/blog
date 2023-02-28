@@ -1,4 +1,4 @@
-package com.jinxin.platform.hkspresale.utils;
+package com.tarrasques.blog.gateway.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;

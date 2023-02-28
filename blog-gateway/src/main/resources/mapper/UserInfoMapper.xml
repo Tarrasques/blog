@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tarrasques.blog.gateway.dao.UserInfoDao">
+<mapper namespace="com.tarrasques.blog.gateway.mapper.UserInfoMapper">
 
-    <resultMap id="BaseResultMap" type="com.tarrasques.blog.gateway.entity.UserInfo">
+    <resultMap id="BaseResultMap" type="com.tarrasques.blog.commons.entity.UserInfo">
         <!--@Table user_info-->
         <result property="id" column="id" jdbcType="VARCHAR"/>
         <result property="account" column="account" jdbcType="VARCHAR"/>
@@ -13,6 +13,35 @@
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
         <result property="loginTime" column="login_time" jdbcType="TIMESTAMP"/>
     </resultMap>
+
+    <sql id="Where_Clause">
+        <where>
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="account != null and account != ''">
+                and account = #{account}
+            </if>
+            <if test="userName != null and userName != ''">
+                and user_name = #{userName}
+            </if>
+            <if test="userPassword != null and userPassword != ''">
+                and user_password = #{userPassword}
+            </if>
+            <if test="avatarUrl != null and avatarUrl != ''">
+                and avatar_url = #{avatarUrl}
+            </if>
+            <if test="roleCode != null and roleCode != ''">
+                and role_code = #{roleCode}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="loginTime != null">
+                and login_time = #{loginTime}
+            </if>
+        </where>
+    </sql>
 
     <!--查询单个-->
     <select id="queryById" resultMap="BaseResultMap">
@@ -28,107 +57,10 @@
         where id = #{id}
     </select>
 
-    <!--查询指定行数据-->
-    <select id="queryAllByLimit" resultMap="BaseResultMap">
-        select
-        id, account, user_name, user_password, avatar_url, role_code, create_time, login_time
-        from user_info
-        <where>
-            <if test="id != null and id != ''">
-                and id = #{id}
-            </if>
-            <if test="account != null and account != ''">
-                and account = #{account}
-            </if>
-            <if test="userName != null and userName != ''">
-                and user_name = #{userName}
-            </if>
-            <if test="userPassword != null and userPassword != ''">
-                and user_password = #{userPassword}
-            </if>
-            <if test="avatarUrl != null and avatarUrl != ''">
-                and avatar_url = #{avatarUrl}
-            </if>
-            <if test="roleCode != null and roleCode != ''">
-                and role_code = #{roleCode}
-            </if>
-            <if test="createTime != null">
-                and create_time = #{createTime}
-            </if>
-            <if test="loginTime != null">
-                and login_time = #{loginTime}
-            </if>
-        </where>
-        limit #{pageable.offset}, #{pageable.pageSize}
-    </select>
-
-    <!--通过实体作为筛选条件查询-->
-    <select id="queryAll" resultMap="BaseResultMap">
-    select
-    id, account, user_name, user_password, avatar_url, role_code, create_time, login_time
-    from blog.user_info
-    <!--统计总行数-->
-    <select id="count" resultType="java.lang.Long">
-        select count(1)
-        from user_info
-        <where>
-            <if test="id != null and id != ''">
-                and id = #{id}
-            </if>
-            <if test="account != null and account != ''">
-                and account = #{account}
-            </if>
-            <if test="userName != null and userName != ''">
-                and user_name = #{userName}
-            </if>
-            <if test="userPassword != null and userPassword != ''">
-                and user_password = #{userPassword}
-            </if>
-            <if test="avatarUrl != null and avatarUrl != ''">
-                and avatar_url = #{avatarUrl}
-            </if>
-            <if test="roleCode != null and roleCode != ''">
-                and role_code = #{roleCode}
-            </if>
-            <if test="createTime != null">
-                and create_time = #{createTime}
-            </if>
-            <if test="loginTime != null">
-                and login_time = #{loginTime}
-            </if>
-        </where>
-    </select>
-
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
         insert into user_info(account, user_name, user_password, avatar_url, role_code, create_time, login_time)
         values (#{account}, #{userName}, #{userPassword}, #{avatarUrl}, #{roleCode}, #{createTime}, #{loginTime})
-    </insert>
-
-    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into user_info(account, user_name, user_password, avatar_url, role_code, create_time, login_time)
-        values
-        <foreach collection="entities" item="entity" separator=",">
-            (#{entity.account}, #{entity.userName}, #{entity.userPassword}, #{entity.avatarUrl}, #{entity.roleCode},
-            #{entity.createTime}, #{entity.loginTime})
-        </foreach>
-    </insert>
-
-    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into user_info(account, user_name, user_password, avatar_url, role_code, create_time, login_time)
-        values
-        <foreach collection="entities" item="entity" separator=",">
-            (#{entity.account}, #{entity.userName}, #{entity.userPassword}, #{entity.avatarUrl}, #{entity.roleCode},
-            #{entity.createTime}, #{entity.loginTime})
-        </foreach>
-        on duplicate key update
-        account = values(account),
-        user_name = values(user_name),
-        user_password = values(user_password),
-        avatar_url = values(avatar_url),
-        role_code = values(role_code),
-        create_time = values(create_time),
-        login_time = values(login_time)
     </insert>
 
     <!--通过主键修改数据-->

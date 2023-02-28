@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tarrasques.blog.gateway.mapper.RoleInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.tarrasques.blog.commons.entity.RoleInfo">
+        <!--@Table role_info-->
+        <result property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="roleCode" column="role_code" jdbcType="VARCHAR"/>
+        <result property="roleName" column="role_name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select id,
+               role_code,
+               role_name
+        from role_info
+        where id = #{id}
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into role_info(role_code, role_name)
+        values (#{roleCode}, #{roleName})
+    </insert>
+
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update role_info
+        <set>
+            <if test="roleCode != null and roleCode != ''">
+                role_code = #{roleCode},
+            </if>
+            <if test="roleName != null and roleName != ''">
+                role_name = #{roleName},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from role_info
+        where id = #{id}
+    </delete>
+
+</mapper>
+
