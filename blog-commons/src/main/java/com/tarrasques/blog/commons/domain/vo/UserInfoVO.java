@@ -1,11 +1,12 @@
-package com.tarrasques.blog.commons.entity;
+package com.tarrasques.blog.commons.domain.vo;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import java.util.Date;
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 /**
  * (UserInfo)实体类
@@ -16,7 +17,7 @@ import java.io.Serializable;
 @Data
 @ToString
 @EqualsAndHashCode
-public class UserInfo implements Serializable {
+public class UserInfoVO implements Serializable {
     private static final long serialVersionUID = -43410321953184155L;
 
     private String id;
@@ -48,7 +49,9 @@ public class UserInfo implements Serializable {
      * 登录时间
      */
     private Date loginTime;
-
-
+    /**
+     *  权限路径
+     */
+    private List<String> rolePath;
 }
 

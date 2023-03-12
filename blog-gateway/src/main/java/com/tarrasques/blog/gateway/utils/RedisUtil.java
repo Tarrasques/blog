@@ -2,6 +2,7 @@ package com.tarrasques.blog.gateway.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
@@ -17,6 +18,9 @@ public class RedisUtil {
     private RedisTemplate<Object, Object> redisTemplate;
 
     public RedisUtil(RedisTemplate<Object, Object> redisTemplate) {
+        StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
+        redisTemplate.setKeySerializer(stringRedisSerializer);
+        redisTemplate.setValueSerializer(stringRedisSerializer);
         this.redisTemplate = redisTemplate;
     }
 

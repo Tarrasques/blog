@@ -3,7 +3,7 @@
 <mapper namespace="com.tarrasques.blog.gateway.mapper.UserInfoMapper">
 
     <resultMap id="BaseResultMap" type="com.tarrasques.blog.commons.entity.UserInfo">
-        <!--@Table user_info-->
+    <!--@Table user_info-->
         <result property="id" column="id" jdbcType="VARCHAR"/>
         <result property="account" column="account" jdbcType="VARCHAR"/>
         <result property="userName" column="user_name" jdbcType="VARCHAR"/>
