@@ -20,6 +20,9 @@ import java.util.List;
 public class UserInfoVO implements Serializable {
     private static final long serialVersionUID = -43410321953184155L;
 
+    /**
+     * ID
+     */
     private String id;
     /**
      * 账号
