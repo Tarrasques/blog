@@ -33,6 +33,7 @@
         <blog-commons.version>0.0.1-SNAPSHOT</blog-commons.version>
         <jackson.version>2.12.3</jackson.version>
         <blog-gateway.version>0.0.1-SNAPSHOT</blog-gateway.version>
+        <nacos.version>2021.1</nacos.version>
     </properties>
         <modules>
             <module>blog-commons</module>
@@ -41,6 +42,16 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+                <version>${nacos.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+                <version>${nacos.version}</version>
+            </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-annotations</artifactId>
